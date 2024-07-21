@@ -44,13 +44,13 @@ func sendTextToTelegramChat(chatID int, text, botToken, parseMode string) error 
 
 func createApp() *cli.App {
 	var (
-		telegramBotToken, telegramParseMode, ciProjectUrl, ciPipelineId, ciCommitSlug, text string
-		telegramChatId                                                                      int
+		telegramBotToken, telegramParseMode, ciProjectUrl, ciPipelineId, ciCommitName, ciCommitAuthor, text string
+		telegramChatId int
 	)
 
 	return &cli.App{
 		Name:    "notifyer",
-		Version: "v1.0.0",
+		Version: "v1.0.1",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:        "telegram_bot_token",
@@ -58,6 +58,28 @@ func createApp() *cli.App {
 				Usage:       "Telegram Bot Token",
 				EnvVars:     []string{"NOTIFYER_TELEGRAM_BOT_TOKEN"},
 				Destination: &telegramBotToken,
+			},
+			&cli.IntFlag{
+				Name:        "telegram_chat_id",
+				Aliases:     []string{"tci"},
+				Usage:       "Telegram Chat ID",
+				EnvVars:     []string{"NOTIFYER_TELEGRAM_CHAT_ID"},
+				Destination: &telegramChatId,
+			},
+			&cli.StringFlag{
+				Name:        "telegram_parse_mode",
+				Aliases:     []string{"tpm"},
+				Usage:       "Telegram Parse Mode",
+				EnvVars:     []string{"NOTIFYER_TELEGRAM_PARSE_MODE"},
+				Value:       "HTML",
+				Destination: &telegramParseMode,
+			},
+			&cli.StringFlag{
+				Name:        "ci_commit_author",
+				Aliases:     []string{"author"},
+				Usage:       "CI Commit Author - GitLab CI",
+				EnvVars:     []string{"CI_COMMIT_AUTHOR"},
+				Destination: &ciCommitAuthor,
 			},
 			&cli.StringFlag{
 				Name:        "ci_project_url",
@@ -74,26 +96,11 @@ func createApp() *cli.App {
 				Destination: &ciPipelineId,
 			},
 			&cli.StringFlag{
-				Name:        "ci_commit_slug",
-				Aliases:     []string{"gcs"},
-				Usage:       "CI Commit Slug - GitLab CI",
-				EnvVars:     []string{"CI_COMMIT_REF_SLUG"},
-				Destination: &ciCommitSlug,
-			},
-			&cli.IntFlag{
-				Name:        "telegram_chat_id",
-				Aliases:     []string{"tci"},
-				Usage:       "Telegram Chat ID",
-				EnvVars:     []string{"NOTIFYER_TELEGRAM_CHAT_ID"},
-				Destination: &telegramChatId,
-			},
-			&cli.StringFlag{
-				Name:        "telegram_parse_mode",
-				Aliases:     []string{"tpm"},
-				Usage:       "Telegram Parse Mode",
-				EnvVars:     []string{"NOTIFYER_TELEGRAM_PARSE_MODE"},
-				Value:       "HTML",
-				Destination: &telegramParseMode,
+				Name:        "ci_commit_ref_name",
+				Aliases:     []string{"branch"},
+				Usage:       "CI Commit Branch or Tag name - GitLab CI",
+				EnvVars:     []string{"CI_COMMIT_REF_NAME"},
+				Destination: &ciCommitName,
 			},
 			&cli.StringFlag{
 				Name:        "text",

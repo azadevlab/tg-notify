@@ -42,13 +42,14 @@ help, h Shows a list of commands or help for one command
 
 ### GLOBAL OPTIONS:
 ```
---telegram_bot_token value, --tbt value Telegram Bot Token [$NOTIFYER_TELEGRAM_BOT_TOKEN]
---ci_project_url value, --cpu value CI Project URL - GitLab CI [$CI_PROJECT_URL]
---ci_pipeline_id value, --cpi value CI Pipeline ID - GitLab CI [$CI_PIPELINE_ID]
---ci_commit_slug value, --gcs value CI Commit Slug - GitLab CI [$CI_COMMIT_REF_SLUG]
---telegram_chat_id value, --tci value Telegram Chat ID (default: 0) [$NOTIFYER_TELEGRAM_CHAT_ID]
---telegram_parse_mode value, --tpm value Telegram Parse Mode (default: "HTML") [$NOTIFYER_TELEGRAM_PARSE_MODE]
---text value, -t value Text to send [$NOTIFYER_TEXT]
---help, -h show help
---version, -v print the version
-
+   --telegram_bot_token value, --tbt value     Telegram Bot Token [$NOTIFYER_TELEGRAM_BOT_TOKEN]
+   --telegram_chat_id value, --tci value       Telegram Chat ID (default: 0) [$NOTIFYER_TELEGRAM_CHAT_ID]
+   --telegram_parse_mode value, --tpm value    Telegram Parse Mode (default: "HTML") [$NOTIFYER_TELEGRAM_PARSE_MODE]
+   --ci_commit_author value, --author value    CI Commit Author - GitLab CI [$CI_COMMIT_AUTHOR]
+   --ci_project_url value, --cpu value         CI Project URL - GitLab CI [$CI_PROJECT_URL]
+   --ci_pipeline_id value, --cpi value         CI Pipeline ID - GitLab CI [$CI_PIPELINE_ID]
+   --ci_commit_ref_name value, --branch value  CI Commit Branch or Tag name - GitLab CI [$CI_COMMIT_REF_NAME]
+   --text value, -t value                      Text to send [$NOTIFYER_TEXT]
+   --help, -h                                  show help
+   --version, -v                               print the version
+```
