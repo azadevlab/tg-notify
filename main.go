@@ -49,7 +49,7 @@ func createApp() *cli.App {
 	)
 
 	return &cli.App{
-		Name:    "notifyer",
+		Name:    "tg-notify",
 		Version: "v1.0.1",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
